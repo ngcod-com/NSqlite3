@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "NSqlite3",
+	"Description": "This is a Sqlite3 Plugin that can be use in blueprint very easy",
+	"Category": "Other",
+	"CreatedBy": "ngcod",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "NSqlite3",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
