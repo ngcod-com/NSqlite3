@@ -25,7 +25,10 @@ public class NSqlite3 : ModuleRules
 		}
 		else if (Target.Platform == UnrealTargetPlatform.Android)
 		{
-			PublicAdditionalLibraries.Add(Path.Combine(PluginPath, "lib/Win64/sqlite3.lib"));
+			PublicAdditionalLibraries.Add(Path.Combine(PluginPath, "lib/Android/ARM64/libsqlite3.a"));
+			PublicAdditionalLibraries.Add(Path.Combine(PluginPath, "lib/Android/ARMv7/libsqlite3.a"));
+			PublicAdditionalLibraries.Add(Path.Combine(PluginPath, "lib/Android/x64/libsqlite3.a"));
+			PublicAdditionalLibraries.Add(Path.Combine(PluginPath, "lib/Android/x86/libsqlite3.a"));
 		}
 		else if (Target.Platform == UnrealTargetPlatform.IOS)
 		{
