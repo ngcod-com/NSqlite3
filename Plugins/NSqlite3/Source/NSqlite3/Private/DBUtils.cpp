@@ -79,9 +79,15 @@ bool UDBUtils::Execute(const FString& SQL, FString& errorMsg)
 	{
 		return false;
 	}
+	const FString tSQL = SQL.TrimStartAndEnd();
+	if (tSQL.StartsWith(TEXT("select")))
+	{
+		errorMsg = TEXT("Please use query function.");
+		return false;
+	}
 	errorMsg = TEXT("");
 	TArray<UDataRow*> results;
-	if (sqlite3_exec(Database, TCHAR_TO_UTF8(*SQL), nullptr, nullptr, nullptr) == SQLITE_OK)
+	if (sqlite3_exec(Database, TCHAR_TO_UTF8(*tSQL), nullptr, nullptr, nullptr) == SQLITE_OK)
 	{
 		return true;
 	}
@@ -98,8 +104,15 @@ TArray<UDataRow*> UDBUtils::Query(const FString& TableName, const FString& ColNa
 
 TArray<UDataRow*> UDBUtils::QueryBySql(const FString& SQL, FString& errorMsg)
 {
+	const FString tSQL = SQL.TrimStartAndEnd();
 	errorMsg = TEXT("");
 	TArray<UDataRow*> results;
+	if (!tSQL.StartsWith(TEXT("select")))
+	{
+		errorMsg = TEXT("Please use Execute.");
+		return results;
+	}
+	
 	if (nullptr == Database)
 	{
 		errorMsg = TEXT("Database is null. Did you open it");
@@ -108,9 +121,8 @@ TArray<UDataRow*> UDBUtils::QueryBySql(const FString& SQL, FString& errorMsg)
 	
 	sqlite3_stmt* stmt = NULL;
 	const char* zTail;
-	FString strSql = SQL;
 	
-	if (sqlite3_prepare_v2(Database, TCHAR_TO_UTF8(*strSql), -1, &stmt, &zTail) == SQLITE_OK)
+	if (sqlite3_prepare_v2(Database, TCHAR_TO_UTF8(*tSQL), -1, &stmt, &zTail) == SQLITE_OK)
 	{
 		int iCount = sqlite3_column_count(stmt);
 		while (sqlite3_step(stmt) == SQLITE_ROW)
