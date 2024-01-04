@@ -3,6 +3,8 @@
 #include "DBUtils.h"
 #include "DataRow.h"
 #include "NDataBase.h"
+#include "Misc/Paths.h"
+#include "HAL/FileManager.h"
 
 sqlite3* UDBUtils::Database = nullptr;
 
