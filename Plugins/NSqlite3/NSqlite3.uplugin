@@ -19,7 +19,8 @@
 		{
 			"Name": "NSqlite3",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [ "Win64","IOS", "Android" ]
 		}
 	]
 }
