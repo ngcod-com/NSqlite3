@@ -17,8 +17,6 @@ public class NSqlite3 : ModuleRules
 			}
 			);
 		
-		System.Console.WriteLine("www.ngcod.com: path=" + Target.Architecture.ToString());
-		
 		if (Target.Platform == UnrealTargetPlatform.Win64)
 		{
 			PublicAdditionalLibraries.Add(Path.Combine(PluginPath, "lib/Win64/sqlite3.lib"));
